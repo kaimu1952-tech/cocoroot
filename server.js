@@ -213,7 +213,12 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/api/health", (req, res) => {
-  res.json({ ok: true });
+  res.json({
+    ok: true,
+    openaiConfigured: Boolean(openai),
+    ttsModel,
+    ttsVoice
+  });
 });
 
 app.post("/api/chat", async (req, res) => {
