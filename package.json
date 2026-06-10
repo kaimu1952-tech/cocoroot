@@ -1,0 +1,15 @@
+{
+  "name": "cocoroot",
+  "version": "1.0.0",
+  "description": "A gentle voice companion robot web app for children.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:lan": "HOST=0.0.0.0 node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "openai": "^4.0.0",
+    "dotenv": "^16.0.0"
+  }
+}

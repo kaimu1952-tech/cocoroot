@@ -1,0 +1,426 @@
+:root {
+  --green: #6fcf97;
+  --deep-green: #219653;
+  --mint: #dff8e9;
+  --cream: #fff6e7;
+  --ink: #25543b;
+  --coral: #ff9c8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Klee One", "Nunito", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(111, 207, 151, 0.24), transparent 24rem),
+    radial-gradient(circle at 82% 28%, rgba(255, 156, 138, 0.16), transparent 20rem),
+    linear-gradient(180deg, #fffaf1 0%, var(--cream) 100%);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 100vh;
+  padding: 32px 20px 26px;
+}
+
+.character-stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.robot {
+  width: min(74vw, 360px);
+  aspect-ratio: 8 / 9;
+  transform-origin: center bottom;
+}
+
+.robot-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.shadow {
+  fill: rgba(33, 150, 83, 0.18);
+  transform-origin: center;
+}
+
+.antenna line {
+  stroke: var(--deep-green);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.antenna circle,
+.ear {
+  fill: var(--green);
+}
+
+.ear-core {
+  fill: #ffffff;
+  opacity: 0.9;
+}
+
+.face-panel {
+  fill: #f7fffb;
+  stroke: rgba(33, 150, 83, 0.2);
+  stroke-width: 3;
+}
+
+.belly {
+  fill: #ffffff;
+  stroke: rgba(33, 150, 83, 0.15);
+  stroke-width: 3;
+}
+
+.eye {
+  fill: var(--deep-green);
+  transform-origin: center;
+}
+
+.thinking-dot {
+  fill: #ffffff;
+  opacity: 0;
+  transform-origin: 160px 139px;
+}
+
+.cheeks circle {
+  fill: var(--coral);
+  opacity: 0.45;
+}
+
+.mouth-smile {
+  fill: none;
+  stroke: var(--deep-green);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.mouth-open {
+  fill: var(--deep-green);
+  opacity: 0;
+  transform-origin: center;
+}
+
+.arm {
+  fill: none;
+  stroke: var(--deep-green);
+  stroke-width: 16;
+  stroke-linecap: round;
+  opacity: 0.82;
+}
+
+.controls {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  width: min(680px, 100%);
+  margin: 0 auto;
+  padding-bottom: max(4px, env(safe-area-inset-bottom));
+}
+
+.reply-panel {
+  width: 100%;
+  min-height: 110px;
+  padding: 18px 20px;
+  border: 3px solid rgba(33, 150, 83, 0.14);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 28px rgba(33, 150, 83, 0.1);
+}
+
+.reply-label {
+  margin: 0 0 6px;
+  color: var(--deep-green);
+  font-family: "Nunito", "Klee One", system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.reply-text {
+  margin: 0;
+  font-size: 1.16rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.analysis-text {
+  margin: 8px 0 0;
+  color: rgba(37, 84, 59, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 86px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.message-input {
+  width: 100%;
+  min-height: 86px;
+  max-height: 150px;
+  padding: 20px 22px;
+  border: 3px solid rgba(33, 150, 83, 0.2);
+  border-radius: 28px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 28px rgba(33, 150, 83, 0.12);
+  font: 600 1.35rem/1.45 "Klee One", "Nunito", system-ui, sans-serif;
+  outline: none;
+  resize: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.message-input:focus {
+  border-color: rgba(33, 150, 83, 0.54);
+  box-shadow: 0 14px 30px rgba(33, 150, 83, 0.18);
+}
+
+.message-input::placeholder {
+  color: rgba(37, 84, 59, 0.5);
+}
+
+.send-button {
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(180deg, var(--green), var(--deep-green));
+  box-shadow: 0 16px 30px rgba(33, 150, 83, 0.3);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.send-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(33, 150, 83, 0.34);
+}
+
+.send-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.send-button:disabled,
+.message-input:disabled {
+  cursor: wait;
+  filter: saturate(0.75);
+}
+
+.send-button svg {
+  width: 38px;
+  height: 38px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.status-text {
+  min-height: 36px;
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.idle {
+  animation: float 4s ease-in-out infinite;
+}
+
+.idle .shadow {
+  animation: shadowPulse 4s ease-in-out infinite;
+}
+
+.listening {
+  animation: heartbeat 820ms ease-in-out infinite;
+}
+
+.listening .ear,
+.listening .eye {
+  animation: glow 820ms ease-in-out infinite;
+}
+
+.thinking {
+  animation: float 2.2s ease-in-out infinite;
+}
+
+.thinking .eye {
+  opacity: 0.2;
+}
+
+.thinking .thinking-dot {
+  opacity: 1;
+  animation: spinDots 900ms linear infinite;
+}
+
+.speaking {
+  animation: float 2.6s ease-in-out infinite;
+}
+
+.speaking .mouth-smile {
+  opacity: 0.2;
+}
+
+.speaking .mouth-open {
+  animation: mouthTalk 260ms ease-in-out infinite;
+}
+
+.speaking .arm-left {
+  animation: waveLeft 900ms ease-in-out infinite;
+}
+
+.speaking .arm-right {
+  animation: waveRight 900ms ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.84);
+    opacity: 0.62;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.035);
+  }
+  55% {
+    transform: scale(1.01);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(111, 207, 151, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(111, 207, 151, 0.95));
+  }
+}
+
+@keyframes spinDots {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mouthTalk {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleY(0.45);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(3.8);
+  }
+}
+
+@keyframes waveLeft {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes waveRight {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    padding: 24px 16px 20px;
+  }
+
+  .robot {
+    width: min(86vw, 330px);
+  }
+
+  .chat-form {
+    grid-template-columns: minmax(0, 1fr) 78px;
+    gap: 10px;
+  }
+
+  .message-input {
+    min-height: 78px;
+    padding: 16px 18px;
+    border-radius: 24px;
+    font-size: 1.12rem;
+  }
+
+  .reply-panel {
+    min-height: 104px;
+    padding: 16px 18px;
+    border-radius: 24px;
+  }
+
+  .reply-text {
+    font-size: 1.02rem;
+  }
+
+  .send-button {
+    width: 78px;
+    height: 78px;
+  }
+}
