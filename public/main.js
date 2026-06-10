@@ -8,6 +8,7 @@ const analysisText = document.getElementById("analysisText");
 
 let activeAudio;
 let preferredVoice = null;
+let isComposingText = false;
 
 const stateLabels = {
   idle: "かいておくってね",
@@ -220,8 +221,18 @@ chatForm.addEventListener("submit", (event) => {
   sendMessage(messageInput.value);
 });
 
+messageInput.addEventListener("compositionstart", () => {
+  isComposingText = true;
+});
+
+messageInput.addEventListener("compositionend", () => {
+  isComposingText = false;
+});
+
 messageInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && !event.shiftKey) {
+  const isConfirmingJapaneseText = event.isComposing || isComposingText || event.keyCode === 229;
+
+  if (event.key === "Enter" && !event.shiftKey && !isConfirmingJapaneseText) {
     event.preventDefault();
     chatForm.requestSubmit();
   }
