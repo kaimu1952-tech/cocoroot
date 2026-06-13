@@ -373,7 +373,7 @@ button {
   transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
-.feeling-button::before {
+.feeling-check {
   display: grid;
   place-items: center;
   width: 18px;
@@ -382,7 +382,6 @@ button {
   border-radius: 50%;
   color: transparent;
   background: #ffffff;
-  content: "✓";
   font-family: system-ui, sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
@@ -405,7 +404,7 @@ button {
   box-shadow: 0 0 0 3px rgba(99, 197, 139, 0.14);
 }
 
-.feeling-button[aria-pressed="true"]::before {
+.feeling-button[aria-pressed="true"] .feeling-check {
   border-color: var(--deep-green);
   color: #ffffff;
   background: var(--deep-green);
