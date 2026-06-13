@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=11">
+    <link rel="stylesheet" href="/style.css?v=12">
   </head>
   <body>
     <main class="app-shell">
@@ -96,6 +96,17 @@
             <p id="replyText" class="reply-text">きみのことばを、ここでやさしくうけとるよ。</p>
           </section>
 
+          <section class="feeling-picker" aria-labelledby="feelingPrompt">
+            <p id="feelingPrompt" class="feeling-prompt">いまのきもちに 近いものはある？</p>
+            <div class="feeling-list">
+              <button class="feeling-button" type="button" aria-pressed="false" data-feeling-text="かなしい きもちがある">かなしい</button>
+              <button class="feeling-button" type="button" aria-pressed="false" data-feeling-text="しんぱいな ことがある">しんぱい</button>
+              <button class="feeling-button" type="button" aria-pressed="false" data-feeling-text="イライラする ことがある">イライラ</button>
+              <button class="feeling-button" type="button" aria-pressed="false" data-feeling-text="ちょっと つかれている">つかれた</button>
+              <button class="feeling-button" type="button" aria-pressed="false" data-feeling-text="うまく ことばに できない">うまくいえない</button>
+            </div>
+          </section>
+
           <div class="prompt-list" aria-label="はなしはじめのヒント">
             <button class="prompt-button" type="button" data-prompt="学校のことで、きいてほしいことがあるよ。">学校のこと</button>
             <button class="prompt-button" type="button" data-prompt="友だちのことで、きいてほしいことがあるよ。">友だちのこと</button>
@@ -132,6 +143,6 @@
       </div>
     </main>
 
-    <script src="/main.js?v=10"></script>
+    <script src="/main.js?v=12"></script>
   </body>
 </html>

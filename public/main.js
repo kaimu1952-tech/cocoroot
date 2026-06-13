@@ -7,6 +7,7 @@ const statusLabel = statusText.querySelector(".status-label");
 const replyText = document.getElementById("replyText");
 const analysisText = document.getElementById("analysisText");
 const promptButtons = [...document.querySelectorAll(".prompt-button")];
+const feelingButtons = [...document.querySelectorAll(".feeling-button")];
 
 let activeAudio;
 let preferredVoice = null;
@@ -31,6 +32,9 @@ function setControlsDisabled(disabled) {
   sendButton.disabled = disabled;
   messageInput.disabled = disabled;
   promptButtons.forEach((button) => {
+    button.disabled = disabled;
+  });
+  feelingButtons.forEach((button) => {
     button.disabled = disabled;
   });
 }
@@ -270,6 +274,22 @@ promptButtons.forEach((button) => {
   button.addEventListener("click", () => {
     messageInput.value = button.dataset.prompt || "";
     resizeMessageInput();
+    messageInput.focus();
+    messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+  });
+});
+
+feelingButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    feelingButtons.forEach((feelingButton) => {
+      feelingButton.setAttribute("aria-pressed", String(feelingButton === button));
+    });
+
+    if (!messageInput.value.trim()) {
+      messageInput.value = button.dataset.feelingText || "";
+      resizeMessageInput();
+    }
+
     messageInput.focus();
     messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
   });

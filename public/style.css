@@ -333,6 +333,84 @@ button {
   display: none;
 }
 
+.feeling-picker {
+  display: grid;
+  gap: 9px;
+  padding: 2px 0;
+}
+
+.feeling-prompt {
+  margin: 0;
+  color: var(--dark-green);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.feeling-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+}
+
+.feeling-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 15px;
+  border: 2px solid #c8dfd0;
+  border-radius: 22px;
+  color: var(--dark-green);
+  background: #fffdf8;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.feeling-button::before {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #a9cbb6;
+  border-radius: 50%;
+  color: transparent;
+  background: #ffffff;
+  content: "✓";
+  font-family: system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.feeling-button:hover {
+  border-color: var(--green);
+  background: var(--pale-mint);
+  transform: translateY(-1px);
+}
+
+.feeling-button:active {
+  transform: translateY(1px);
+}
+
+.feeling-button[aria-pressed="true"] {
+  border-color: var(--deep-green);
+  background: var(--mint);
+  box-shadow: 0 0 0 3px rgba(99, 197, 139, 0.14);
+}
+
+.feeling-button[aria-pressed="true"]::before {
+  border-color: var(--deep-green);
+  color: #ffffff;
+  background: var(--deep-green);
+}
+
 .prompt-list {
   display: flex;
   flex-wrap: wrap;
@@ -359,6 +437,7 @@ button {
 }
 
 .prompt-button:focus-visible,
+.feeling-button:focus-visible,
 .message-input:focus-visible,
 .send-button:focus-visible,
 .brand:focus-visible {
@@ -436,7 +515,8 @@ button {
 
 .send-button:disabled,
 .message-input:disabled,
-.prompt-button:disabled {
+.prompt-button:disabled,
+.feeling-button:disabled {
   cursor: wait;
   opacity: 0.6;
 }
@@ -754,6 +834,24 @@ button {
     margin: 0;
     padding: 0;
     overflow: visible;
+  }
+
+  .feeling-picker {
+    gap: 8px;
+  }
+
+  .feeling-prompt {
+    font-size: 0.9rem;
+  }
+
+  .feeling-list {
+    gap: 8px;
+  }
+
+  .feeling-button {
+    min-height: 42px;
+    padding: 7px 12px;
+    font-size: 0.86rem;
   }
 
   .prompt-button {
