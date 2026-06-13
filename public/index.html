@@ -7,96 +7,131 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=9">
+    <link rel="stylesheet" href="/style.css?v=10">
   </head>
   <body>
     <main class="app-shell">
-      <section class="character-stage" aria-label="cocoroot">
-        <div id="robot" class="robot idle" aria-hidden="true">
-          <svg class="robot-svg" viewBox="0 0 320 360" role="img" aria-label="cocoroot robot">
-            <defs>
-              <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff"></stop>
-                <stop offset="100%" stop-color="#dff8e9"></stop>
-              </linearGradient>
-              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
-                <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#4c8a68" flood-opacity="0.18"></feDropShadow>
-              </filter>
-            </defs>
+      <header class="app-header">
+        <a class="brand" href="/" aria-label="cocoroot ホーム">
+          <span class="brand-mark" aria-hidden="true">c</span>
+          <span class="brand-name">cocoroot</span>
+        </a>
+        <p class="brand-message">こころを、ことばにするおてつだい</p>
+      </header>
 
-            <ellipse class="shadow" cx="160" cy="325" rx="92" ry="18"></ellipse>
+      <div class="experience">
+        <section class="companion" aria-label="cocoroot">
+          <div class="character-stage">
+            <div id="robot" class="robot idle" aria-hidden="true">
+              <svg class="robot-svg" viewBox="0 0 320 360" role="img" aria-label="cocoroot robot">
+                <defs>
+                  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#4c8a68" flood-opacity="0.18"></feDropShadow>
+                  </filter>
+                </defs>
 
-            <g class="antenna">
-              <line x1="160" y1="54" x2="160" y2="25"></line>
-              <circle cx="160" cy="19" r="12"></circle>
-            </g>
+                <ellipse class="shadow" cx="160" cy="325" rx="92" ry="18"></ellipse>
 
-            <g class="ears">
-              <circle class="ear ear-left" cx="57" cy="156" r="36"></circle>
-              <circle class="ear-core" cx="57" cy="156" r="16"></circle>
-              <circle class="ear ear-right" cx="263" cy="156" r="36"></circle>
-              <circle class="ear-core" cx="263" cy="156" r="16"></circle>
-            </g>
+                <g class="antenna">
+                  <line x1="160" y1="54" x2="160" y2="25"></line>
+                  <circle cx="160" cy="19" r="12"></circle>
+                </g>
 
-            <g class="body" filter="url(#softShadow)">
-              <rect x="70" y="58" width="180" height="212" rx="76" fill="url(#bodyGradient)"></rect>
-              <rect class="face-panel" x="95" y="91" width="130" height="104" rx="48"></rect>
-              <path class="belly" d="M111 223c15 22 83 22 98 0 7-10 3-24-11-26-19-3-57-3-76 0-14 2-18 16-11 26Z"></path>
-            </g>
+                <g class="ears">
+                  <circle class="ear ear-left" cx="57" cy="156" r="36"></circle>
+                  <circle class="ear-core" cx="57" cy="156" r="16"></circle>
+                  <circle class="ear ear-right" cx="263" cy="156" r="36"></circle>
+                  <circle class="ear-core" cx="263" cy="156" r="16"></circle>
+                </g>
 
-            <g class="eyes">
-              <circle class="eye eye-left" cx="130" cy="139" r="13"></circle>
-              <circle class="eye eye-right" cx="190" cy="139" r="13"></circle>
-              <circle class="thinking-dot dot-left" cx="130" cy="139" r="5"></circle>
-              <circle class="thinking-dot dot-right" cx="190" cy="139" r="5"></circle>
-            </g>
+                <g class="body" filter="url(#softShadow)">
+                  <rect class="body-shell" x="70" y="58" width="180" height="212" rx="76"></rect>
+                  <rect class="face-panel" x="95" y="91" width="130" height="104" rx="48"></rect>
+                  <path class="belly" d="M111 223c15 22 83 22 98 0 7-10 3-24-11-26-19-3-57-3-76 0-14 2-18 16-11 26Z"></path>
+                </g>
 
-            <g class="cheeks">
-              <circle cx="105" cy="166" r="9"></circle>
-              <circle cx="215" cy="166" r="9"></circle>
-            </g>
+                <g class="eyes">
+                  <circle class="eye eye-left" cx="130" cy="139" r="13"></circle>
+                  <circle class="eye eye-right" cx="190" cy="139" r="13"></circle>
+                  <circle class="thinking-dot dot-left" cx="130" cy="139" r="5"></circle>
+                  <circle class="thinking-dot dot-right" cx="190" cy="139" r="5"></circle>
+                </g>
 
-            <g class="mouth">
-              <path class="mouth-smile" d="M139 165c8 12 34 12 42 0"></path>
-              <ellipse class="mouth-open" cx="160" cy="170" rx="19" ry="4"></ellipse>
-            </g>
+                <g class="cheeks">
+                  <circle cx="105" cy="166" r="9"></circle>
+                  <circle cx="215" cy="166" r="9"></circle>
+                </g>
 
-            <g class="arms">
-              <path class="arm arm-left" d="M78 217c-20 10-35 26-39 45"></path>
-              <path class="arm arm-right" d="M242 217c20 10 35 26 39 45"></path>
-            </g>
-          </svg>
-        </div>
-      </section>
+                <g class="mouth">
+                  <path class="mouth-smile" d="M139 165c8 12 34 12 42 0"></path>
+                  <ellipse class="mouth-open" cx="160" cy="170" rx="19" ry="4"></ellipse>
+                </g>
 
-      <section class="controls" aria-label="text chat controls">
-        <section class="reply-panel" aria-live="polite">
-          <p class="reply-label">cocoroot</p>
-          <p id="replyText" class="reply-text">きみのことばを、ここでやさしくうけとるよ。</p>
-          <p id="analysisText" class="analysis-text"></p>
+                <g class="arms">
+                  <path class="arm arm-left" d="M78 217c-20 10-35 26-39 45"></path>
+                  <path class="arm arm-right" d="M242 217c20 10 35 26 39 45"></path>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <p id="statusText" class="status-text" aria-live="polite">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-label">ここにいるよ</span>
+          </p>
         </section>
-        <form id="chatForm" class="chat-form">
-          <label class="sr-only" for="messageInput">cocoroot に送ることば</label>
-          <textarea
-            id="messageInput"
-            class="message-input"
-            name="message"
-            rows="2"
-            maxlength="240"
-            placeholder="ここにかいてね"
-            autocomplete="off"
-          ></textarea>
-          <button id="sendButton" class="send-button" type="submit" aria-label="送信">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m4 12 16-8-4 16-3.8-6.2L4 12Z"></path>
-              <path d="m20 4-7.8 9.8"></path>
-            </svg>
-          </button>
-        </form>
-        <p id="statusText" class="status-text" aria-live="polite">かいておくってね</p>
-      </section>
+
+        <section class="conversation" aria-label="cocoroot とのおはなし">
+          <div class="conversation-intro">
+            <p class="eyebrow">cocorootに きかせてね</p>
+            <h1>いま、どんなきもち？</h1>
+            <p>うまくまとまらなくても、ひとことだけでもだいじょうぶ。</p>
+          </div>
+
+          <section class="reply-panel" aria-live="polite" aria-atomic="true">
+            <div class="reply-heading">
+              <span class="reply-avatar" aria-hidden="true">c</span>
+              <p class="reply-label">cocoroot</p>
+              <p id="analysisText" class="analysis-text"></p>
+            </div>
+            <p id="replyText" class="reply-text">きみのことばを、ここでやさしくうけとるよ。</p>
+          </section>
+
+          <div class="prompt-list" aria-label="はなしはじめのヒント">
+            <button class="prompt-button" type="button" data-prompt="学校のことで、きいてほしいことがあるよ。">学校のこと</button>
+            <button class="prompt-button" type="button" data-prompt="友だちのことで、きいてほしいことがあるよ。">友だちのこと</button>
+            <button class="prompt-button" type="button" data-prompt="おうちのことで、きいてほしいことがあるよ。">おうちのこと</button>
+            <button class="prompt-button" type="button" data-prompt="なんだかもやもやしているよ。">もやもやする</button>
+          </div>
+
+          <form id="chatForm" class="chat-form">
+            <label class="input-label" for="messageInput">ここに書いてね</label>
+            <div class="composer">
+              <textarea
+                id="messageInput"
+                class="message-input"
+                name="message"
+                rows="3"
+                maxlength="240"
+                placeholder="たとえば「きょう、かなしいことがあった」"
+                autocomplete="off"
+              ></textarea>
+              <button id="sendButton" class="send-button" type="submit" aria-label="送信" title="送信">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m4 12 16-8-4 16-3.8-6.2L4 12Z"></path>
+                  <path d="m20 4-7.8 9.8"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <aside class="support-note">
+            <span class="support-icon" aria-hidden="true">!</span>
+            <p>とてもつらいときは、ひとりでがんばらなくていいよ。家族や先生、ほけんしつの先生にも話してね。</p>
+          </aside>
+        </section>
+      </div>
     </main>
 
-    <script src="/main.js?v=9"></script>
+    <script src="/main.js?v=10"></script>
   </body>
 </html>

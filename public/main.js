@@ -3,30 +3,41 @@ const chatForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const statusText = document.getElementById("statusText");
+const statusLabel = statusText.querySelector(".status-label");
 const replyText = document.getElementById("replyText");
 const analysisText = document.getElementById("analysisText");
+const promptButtons = [...document.querySelectorAll(".prompt-button")];
 
 let activeAudio;
 let preferredVoice = null;
 let isComposingText = false;
 
 const stateLabels = {
-  idle: "かいておくってね",
-  listening: "よんでるよ",
-  thinking: "かんがえてるよ",
-  speaking: "はなしてるよ"
+  idle: "ここにいるよ",
+  listening: "よんでいるよ",
+  thinking: "いっしょにかんがえてるよ",
+  speaking: "おはなししてるよ"
 };
 
 function setState(state, message = stateLabels[state]) {
   robot.classList.remove("idle", "listening", "thinking", "speaking");
   robot.classList.add(state);
-  statusText.textContent = message;
+  statusText.classList.remove("state-idle", "state-listening", "state-thinking", "state-speaking");
+  statusText.classList.add(`state-${state}`);
+  statusLabel.textContent = message;
+}
+
+function setControlsDisabled(disabled) {
+  sendButton.disabled = disabled;
+  messageInput.disabled = disabled;
+  promptButtons.forEach((button) => {
+    button.disabled = disabled;
+  });
 }
 
 function showError(message) {
   setState("idle", message);
-  sendButton.disabled = false;
-  messageInput.disabled = false;
+  setControlsDisabled(false);
   messageInput.focus();
 }
 
@@ -130,10 +141,26 @@ async function speakWithBrowser(text) {
 }
 
 function resetControls() {
-  sendButton.disabled = false;
-  messageInput.disabled = false;
+  setControlsDisabled(false);
   messageInput.focus();
   setState("idle");
+}
+
+function resizeMessageInput() {
+  messageInput.style.height = "auto";
+  messageInput.style.height = `${Math.min(messageInput.scrollHeight, 170)}px`;
+}
+
+function describeEmotion(emotion) {
+  if (!emotion) {
+    return "";
+  }
+
+  if (emotion === "わからないきもち") {
+    return "まだことばにならなくてもいいよ";
+  }
+
+  return `「${emotion}」ってかんじなのかも`;
 }
 
 async function sendMessage(message) {
@@ -152,8 +179,7 @@ async function sendMessage(message) {
 
     replyText.textContent = "ことばをうけとったよ。";
     analysisText.textContent = "";
-    sendButton.disabled = true;
-    messageInput.disabled = true;
+    setControlsDisabled(true);
     setState("thinking");
 
     const response = await fetch("/api/chat", {
@@ -181,12 +207,12 @@ async function sendMessage(message) {
     const cocorootReply = payload.replyText || "きかせてくれてありがとう。";
     const cocorootSpeech = payload.speechText || cocorootReply;
     const emotion = payload.analysis?.emotion;
-    const summary = payload.analysis?.summary;
 
     replyText.textContent = cocorootReply;
-    analysisText.textContent = emotion && summary ? `きもち: ${emotion} / ${summary}` : "";
+    analysisText.textContent = describeEmotion(emotion);
     setState("speaking");
     messageInput.value = "";
+    resizeMessageInput();
 
     if (payload.audioBase64) {
       const mp3Blob = base64ToBlob(payload.audioBase64, "audio/mpeg");
@@ -229,6 +255,8 @@ messageInput.addEventListener("compositionend", () => {
   isComposingText = false;
 });
 
+messageInput.addEventListener("input", resizeMessageInput);
+
 messageInput.addEventListener("keydown", (event) => {
   const isConfirmingJapaneseText = event.isComposing || isComposingText || event.keyCode === 229;
 
@@ -236,6 +264,15 @@ messageInput.addEventListener("keydown", (event) => {
     event.preventDefault();
     chatForm.requestSubmit();
   }
+});
+
+promptButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    messageInput.value = button.dataset.prompt || "";
+    resizeMessageInput();
+    messageInput.focus();
+    messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+  });
 });
 
 setState("idle");
