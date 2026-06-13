@@ -20,6 +20,7 @@
 
 html {
   min-width: 320px;
+  overflow-x: hidden;
   background: var(--canvas);
 }
 
@@ -28,8 +29,9 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
-  font-family: "Klee One", "Nunito", system-ui, sans-serif;
+  font-family: "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
   background: var(--canvas);
 }
 
@@ -43,11 +45,11 @@ button {
 }
 
 .app-shell {
-  width: min(1180px, 100%);
+  width: min(800px, 100%);
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: 0 28px 30px;
+  padding: 0 28px 34px;
 }
 
 .app-header {
@@ -99,17 +101,17 @@ button {
 
 .experience {
   display: grid;
-  grid-template-columns: minmax(300px, 0.86fr) minmax(460px, 1.14fr);
-  align-items: center;
-  gap: clamp(38px, 6vw, 84px);
-  min-height: calc(100dvh - 106px);
-  padding: 32px 0 10px;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 10px;
+  width: 100%;
+  padding: 22px 0 0;
 }
 
 .companion {
   display: grid;
   justify-items: center;
-  align-content: center;
+  align-content: start;
   min-width: 0;
 }
 
@@ -121,7 +123,7 @@ button {
 }
 
 .robot {
-  width: min(100%, 370px);
+  width: min(86vw, 315px);
   aspect-ratio: 8 / 9;
   transform-origin: center bottom;
 }
@@ -214,7 +216,7 @@ button {
   align-items: center;
   gap: 10px;
   min-height: 42px;
-  margin: -10px 0 0;
+  margin: -18px 0 0;
   padding: 8px 16px;
   border: 1px solid var(--line);
   border-radius: 21px;
@@ -234,14 +236,18 @@ button {
 
 .conversation {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
-  max-width: 650px;
+  max-width: 760px;
+  margin: 0 auto;
   min-width: 0;
 }
 
 .conversation-intro {
-  padding-right: 24px;
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
 }
 
 .eyebrow {
@@ -255,7 +261,8 @@ button {
 .conversation-intro h1 {
   margin: 0;
   color: var(--dark-green);
-  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-family: "Klee One", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.3rem);
   font-weight: 600;
   line-height: 1.28;
   letter-spacing: 0;
@@ -264,19 +271,19 @@ button {
 .conversation-intro > p:last-child {
   margin: 7px 0 0;
   color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 .reply-panel {
   position: relative;
-  min-height: 126px;
-  padding: 18px 20px 20px;
-  border: 1px solid var(--line);
+  min-height: 130px;
+  padding: 22px 26px 24px;
+  border: 1px solid #c8dfd0;
   border-left: 5px solid var(--green);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--paper);
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 30px rgba(34, 92, 59, 0.09);
 }
 
 .reply-heading {
@@ -303,10 +310,11 @@ button {
 }
 
 .reply-text {
+  max-width: 680px;
   margin: 0;
-  font-size: 1.08rem;
-  font-weight: 600;
-  line-height: 1.75;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.8;
 }
 
 .analysis-text {
@@ -386,7 +394,7 @@ button {
   color: var(--ink);
   background: #ffffff;
   box-shadow: 0 10px 26px rgba(34, 92, 59, 0.07);
-  font: 600 1.04rem/1.65 "Klee One", "Nunito", system-ui, sans-serif;
+  font: 500 1.0625rem/1.75 "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
   outline: none;
   resize: vertical;
   transition: border-color 160ms ease, box-shadow 160ms ease;
@@ -632,33 +640,22 @@ button {
   }
 
   .experience {
-    grid-template-columns: 1fr;
-    align-content: start;
-    gap: 12px;
-    padding-top: 18px;
-  }
-
-  .companion {
-    align-content: start;
+    gap: 9px;
+    padding-top: 16px;
   }
 
   .robot {
-    width: min(46vw, 250px);
+    width: min(54vw, 280px);
   }
 
   .status-text {
-    margin-top: -18px;
-  }
-
-  .conversation {
-    max-width: 680px;
-    margin: 0 auto;
+    margin-top: -20px;
   }
 }
 
 @media (max-width: 560px) {
   .app-shell {
-    padding: 0 14px 18px;
+    padding: 0 18px 22px;
   }
 
   .app-header {
@@ -680,13 +677,12 @@ button {
   }
 
   .experience {
-    min-height: calc(100dvh - 76px);
-    gap: 10px;
-    padding-top: 9px;
+    gap: 8px;
+    padding-top: 8px;
   }
 
   .robot {
-    width: min(50vw, 190px);
+    width: min(48vw, 172px);
   }
 
   .status-text {
@@ -702,7 +698,7 @@ button {
   }
 
   .conversation {
-    gap: 11px;
+    gap: 12px;
   }
 
   .conversation-intro {
@@ -714,18 +710,19 @@ button {
   }
 
   .conversation-intro h1 {
-    font-size: 1.48rem;
+    font-size: 1.55rem;
   }
 
   .conversation-intro > p:last-child {
     margin-top: 3px;
-    font-size: 0.82rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.7;
   }
 
   .reply-panel {
-    min-height: 108px;
-    padding: 14px 15px 15px;
+    min-height: 112px;
+    padding: 18px 17px 19px;
+    border-radius: 12px;
   }
 
   .reply-heading {
@@ -740,8 +737,8 @@ button {
   }
 
   .reply-text {
-    font-size: 0.93rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    line-height: 1.8;
   }
 
   .analysis-text {
@@ -752,16 +749,11 @@ button {
   }
 
   .prompt-list {
-    flex-wrap: nowrap;
-    width: calc(100% + 14px);
-    margin-right: -14px;
-    padding-right: 14px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .prompt-list::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
   }
 
   .prompt-button {
@@ -783,8 +775,8 @@ button {
   .message-input {
     min-height: 82px;
     padding: 12px 13px;
-    font-size: 0.94rem;
-    line-height: 1.55;
+    font-size: 1rem;
+    line-height: 1.75;
     resize: none;
   }
 
@@ -815,7 +807,7 @@ button {
 
 @media (max-height: 720px) and (max-width: 860px) {
   .robot {
-    width: min(38vw, 160px);
+    width: min(42vw, 160px);
   }
 
   .conversation-intro > p:last-child,
